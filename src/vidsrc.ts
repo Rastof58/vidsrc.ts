@@ -9,7 +9,8 @@ import * as cheerio from "cheerio"; // FOR NODE.JS
 import * as cheerio from "npm:cheerio"; // FOR DENO
 */
 import * as cheerio from "cheerio";
-import { decrypt } from "./helpers/decoder";
+import { Element as DomElement } from "domhandler";
+import { decrypt } from "./helpers/decoder.js";
 
 let BASEDOM = "https://whisperingauroras.com";
 
@@ -36,7 +37,7 @@ async function serversLoad(html: string): Promise<{ servers: Servers[]; title: s
   const title = $("title").text() ?? "";
   const base = $("iframe").attr("src") ?? "";
   BASEDOM = new URL(base.startsWith("//") ? "https:" + base : base).origin ?? BASEDOM;
-  $(".serversList .server").each((index, element) => {
+  $(".serversList .server").each((index: number, element: DomElement) => {
     const server = $(element);
     servers.push({
       name: server.text().trim(),

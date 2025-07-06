@@ -17,6 +17,6 @@
     "noImplicitReturns": true,
     "noUnusedParameters": false,
     "noUnusedLocals": false,
-    "noEmit": true
+    "noEmit": false
   }
 }
